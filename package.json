@@ -4,8 +4,13 @@
   "main": "index.js",
   "author": "Ghanmi Khir",
   "license": "MIT",
+  "scripts": {
+    "server": "live-server --port=8080 public",
+    "babel": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch"
+  },
   "dependencies": {
     "babel-preset-env": "1.5.2",
     "babel-preset-react": "6.24.1"
-  }
+  },
+  "repository": "https://github.com/GhanmiKhir/indecision_app.git"
 }
