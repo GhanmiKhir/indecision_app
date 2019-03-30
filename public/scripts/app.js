@@ -80,6 +80,9 @@ var Action = function (_React$Component3) {
     }
 
     _createClass(Action, [{
+        key: 'handlePick',
+        value: function handlePick() {}
+    }, {
         key: 'render',
         value: function render() {
             return React.createElement(
@@ -87,7 +90,7 @@ var Action = function (_React$Component3) {
                 null,
                 React.createElement(
                     'button',
-                    null,
+                    { onClick: this.handlePick },
                     'What should I do'
                 )
             );
@@ -107,6 +110,11 @@ var Options = function (_React$Component4) {
     }
 
     _createClass(Options, [{
+        key: 'removeAll',
+        value: function removeAll() {
+            console.log('removed');
+        }
+    }, {
         key: 'render',
         value: function render() {
             return React.createElement(
@@ -118,6 +126,11 @@ var Options = function (_React$Component4) {
                     this.props.options.map(function (opt) {
                         return React.createElement(Option, { key: opt, optionText: opt });
                     })
+                ),
+                React.createElement(
+                    'button',
+                    { onClick: this.removeAll },
+                    'Remove all'
                 )
             );
         }
@@ -140,7 +153,7 @@ var Option = function (_React$Component5) {
         value: function render() {
             return React.createElement(
                 'li',
-                { key: this.props.key },
+                null,
                 this.props.optionText
             );
         }
@@ -152,19 +165,41 @@ var Option = function (_React$Component5) {
 var AppOption = function (_React$Component6) {
     _inherits(AppOption, _React$Component6);
 
-    function AppOption() {
+    function AppOption(props) {
         _classCallCheck(this, AppOption);
 
-        return _possibleConstructorReturn(this, (AppOption.__proto__ || Object.getPrototypeOf(AppOption)).apply(this, arguments));
+        var _this6 = _possibleConstructorReturn(this, (AppOption.__proto__ || Object.getPrototypeOf(AppOption)).call(this, props));
+
+        _this6.handleAddOption = _this6.handleAddOption.bind(_this6);
+        return _this6;
     }
 
     _createClass(AppOption, [{
+        key: 'handleAddOption',
+        value: function handleAddOption(e) {
+            e.preventDefault();
+
+            var option = e.target.elements.option.value.trim();
+            if (option) {
+                console.log('baka');
+            }
+        }
+    }, {
         key: 'render',
         value: function render() {
             return React.createElement(
                 'div',
                 null,
-                'AddOption component here'
+                React.createElement(
+                    'form',
+                    { onSubmit: this.handleAddOption },
+                    React.createElement('input', { type: 'text', name: 'option' }),
+                    React.createElement(
+                        'button',
+                        null,
+                        'Add Option'
+                    )
+                )
             );
         }
     }]);
